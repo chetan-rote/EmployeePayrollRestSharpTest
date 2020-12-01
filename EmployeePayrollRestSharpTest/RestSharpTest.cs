@@ -4,6 +4,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using EmployeePayrollRestSharp;
+using Newtonsoft.Json.Linq;
 
 namespace EmployeePayrollRestSharpTest
 {
@@ -41,6 +42,31 @@ namespace EmployeePayrollRestSharpTest
             {
                 System.Console.WriteLine($"ID: {employee.id}, Name: {employee.name}, Sallary: {employee.salary}");
             }
+        }
+        /// <summary>
+        /// TC-2 
+        /// On adding the employee using rest API after the data addition should return the Employee data.
+        /// </summary>
+        [TestMethod]
+        public void OnAddingEmployee_ShouldReturnAddedEmployee()
+        {
+            //Arrange
+            RestRequest restRequest = new RestRequest("employees/", Method.POST);
+            /// Creating reference of json object
+            JObject jObject = new JObject();
+            /// Adding the data attribute with data elements
+            jObject.Add("name", "Kunal");
+            jObject.Add("Salary", "11000");
+            /// Adding parameter to the rest request
+            restRequest.AddParameter("application/json", jObject, ParameterType.RequestBody);
+            //Act
+            IRestResponse restResponse = restClient.Execute(restRequest);
+            //Assert
+            Assert.AreEqual(restResponse.StatusCode, HttpStatusCode.Created);
+            /// Getting the recently added data as json format and then deserialise it to Employee object.
+            EmployeeModel dataResponse = JsonConvert.DeserializeObject<EmployeeModel>(restResponse.Content);
+            Assert.AreEqual("Kunal", dataResponse.name);
+            Assert.AreEqual("11000", dataResponse.salary);
         }
     }
 }
