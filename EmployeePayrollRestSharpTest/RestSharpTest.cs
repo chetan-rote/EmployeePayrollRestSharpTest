@@ -69,6 +69,7 @@ namespace EmployeePayrollRestSharpTest
             Assert.AreEqual("11000", dataResponse.salary);
         }
         /// <summary>
+        /// TC-3
         /// Given the multiple data on post should return total count.
         /// </summary>
         [TestMethod]
@@ -99,7 +100,10 @@ namespace EmployeePayrollRestSharpTest
             List<EmployeeModel> dataResponse = JsonConvert.DeserializeObject<List<EmployeeModel>>(response.Content);
             Assert.AreEqual(7, dataResponse.Count);
         }
-
+        /// <summary>
+        /// TC-4
+        /// Given employee data on update to rest API after the data update return the updated Employee data.
+        /// </summary>
         [TestMethod]
         public void GivenEmployee_OnUpdate_ShouldReturnUpdatedEmployee()
         {
@@ -119,6 +123,21 @@ namespace EmployeePayrollRestSharpTest
             EmployeeModel dataResponse = JsonConvert.DeserializeObject<EmployeeModel>(restResponse.Content);
             Assert.AreEqual("Sachin", dataResponse.name);
             Assert.AreEqual("13500", dataResponse.salary);
+            System.Console.WriteLine(restResponse.Content);
+        }
+        /// <summary>
+        /// TC-5
+        /// Given the employee Id to rest API after delete should return success status.
+        /// </summary>
+        [TestMethod]
+        public void GivenEmployeeId_OnDelete_ShouldReturnSuccessStatus()
+        {
+            //Arrange
+            RestRequest restRequest = new RestRequest("/employees/8", Method.DELETE);
+            //Act
+            IRestResponse restResponse = restClient.Execute(restRequest);
+            //Assert
+            Assert.AreEqual(restResponse.StatusCode, HttpStatusCode.OK);
             System.Console.WriteLine(restResponse.Content);
         }
     }
