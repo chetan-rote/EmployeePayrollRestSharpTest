@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeePayrollRestSharp", "EmployeePayrollRestSharp\EmployeePayrollRestSharp.csproj", "{44EF800D-0726-4301-B802-8C1CE0DE6619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeePayrollRestSharp", "EmployeePayrollRestSharp\EmployeePayrollRestSharp.csproj", "{44EF800D-0726-4301-B802-8C1CE0DE6619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeePayrollRestSharpTest", "EmployeePayrollRestSharpTest\EmployeePayrollRestSharpTest.csproj", "{8B744489-32C5-4E31-98DD-18BFDF026A30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{44EF800D-0726-4301-B802-8C1CE0DE6619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44EF800D-0726-4301-B802-8C1CE0DE6619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44EF800D-0726-4301-B802-8C1CE0DE6619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B744489-32C5-4E31-98DD-18BFDF026A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B744489-32C5-4E31-98DD-18BFDF026A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B744489-32C5-4E31-98DD-18BFDF026A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B744489-32C5-4E31-98DD-18BFDF026A30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
