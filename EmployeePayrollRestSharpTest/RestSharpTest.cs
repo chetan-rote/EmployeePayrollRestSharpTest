@@ -85,7 +85,7 @@ namespace EmployeePayrollRestSharpTest
                 /// Adding the data attribute with data elements
                 jObject.Add("name", employeeData.name);
                 jObject.Add("Salary", employeeData.salary);
-
+                /// Adding parameter to the rest request jObject - contains the parameter list of the json database
                 restRequest.AddParameter("application/json", jObject, ParameterType.RequestBody);
                 //Act
                 IRestResponse restResponse = restClient.Execute(restRequest);
@@ -98,6 +98,28 @@ namespace EmployeePayrollRestSharpTest
             IRestResponse response = GetEmployeeList();
             List<EmployeeModel> dataResponse = JsonConvert.DeserializeObject<List<EmployeeModel>>(response.Content);
             Assert.AreEqual(7, dataResponse.Count);
+        }
+
+        [TestMethod]
+        public void GivenEmployee_OnUpdate_ShouldReturnUpdatedEmployee()
+        {
+            //Arrange
+            RestRequest restRequest = new RestRequest("/employees/7", Method.PUT);
+            /// Creating reference of json object
+            JObject jObject = new JObject();
+            /// Adding the data attribute with data elements
+            jObject.Add("name", "Sachin");
+            jObject.Add("salary", "13500");
+            /// Adding parameter to the rest request jObject contains the parameter list of the json database
+            restRequest.AddParameter("application/json", jObject, ParameterType.RequestBody);
+            //Act
+            IRestResponse restResponse = restClient.Execute(restRequest);
+            //Assert
+            Assert.AreEqual(restResponse.StatusCode, System.Net.HttpStatusCode.OK);
+            EmployeeModel dataResponse = JsonConvert.DeserializeObject<EmployeeModel>(restResponse.Content);
+            Assert.AreEqual("Sachin", dataResponse.name);
+            Assert.AreEqual("13500", dataResponse.salary);
+            System.Console.WriteLine(restResponse.Content);
         }
     }
 }
